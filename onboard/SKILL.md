@@ -111,7 +111,7 @@ Don't add the section without asking — just flag the gap and propose.
 - **Flag gaps.** If there's no CLAUDE.md, no docs, no session logs, say so. Suggest creating them.
 - **Don't modify anything during onboarding.** This is read-only. We're learning, not changing.
 - **If the project has a CLAUDE.md, follow its instructions.** That file overrides any defaults.
-- **Adapt to what exists.** A mature project (like Synestrology) has extensive docs. A smaller project might just have a README. Scale the briefing to match.
+- **Adapt to what exists.** A mature project (like a mature codebase) has extensive docs. A smaller project might just have a README. Scale the briefing to match.
 
 
 ## Skill Run Logging

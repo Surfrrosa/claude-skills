@@ -15,7 +15,7 @@ The user will specify a project by name or path. Known project aliases (same as 
 |-------|------|
 | `myapp` | (add your projects here) |
 
-If a path is given directly, use it. Mobile-only repos (slabcheck, etc.) are SKIP candidates — flag and ask before running.
+If a path is given directly, use it. Mobile-only repos (React Native / Expo) are SKIP candidates — flag and ask before running.
 
 ---
 

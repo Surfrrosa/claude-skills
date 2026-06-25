@@ -17,7 +17,7 @@ The user may specify:
 
 Parse the argument string. Examples:
 - `/ship` -- full check on current directory
-- `/ship synestrology` -- full check on synestrology
+- `/ship myapp` -- full check on myapp
 - `/ship --skip-tests` -- skip test suite
 - `/ship myapp --skip-build` -- skip build for myapp
 
@@ -164,7 +164,7 @@ Present a clear go/no-go:
 
 ### WARNINGS (review before deploy)
 - [ ] 3 console.log statements in changed files
-- [ ] TODO in src/api/checkout.ts:28 (added in this branch)
+- [ ] TODO in src/checkout.ts:28 (added in this branch)
 - [ ] ENV var RESEND_API_KEY referenced in code but not in .env.example
 
 ### CLEAN

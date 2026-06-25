@@ -35,7 +35,7 @@ Parse the argument string. Examples:
 2. Detect the stack
 3. Read `CLAUDE.md` for any privacy/data handling notes
 4. Determine the risk tier:
-   - **High risk:** Collects PII (names, birth dates, email), processes payments, stores user data in a database. Synestrology and surfrrosa are here.
+   - **High risk:** Collects PII (names, birth dates, email), processes payments, stores user data in a database. Apps that handle account data, payments, and PII are here.
    - **Medium risk:** Has analytics, uses cookies, accepts file uploads. Sites with cookies or analytics are here.
    - **Low risk:** Static content, minimal or no analytics. These projects are here.
 
@@ -109,7 +109,7 @@ If the project has a database (Supabase, SQLite, Postgres):
 - Can the user change their choice later? (Link in footer, settings page)
 
 #### 2b. Data collection consent
-For projects collecting PII (synestrology especially):
+For projects collecting PII:
 - Is there a clear disclosure before collecting birth data? ("We use this to generate your chart")
 - Is there consent before adding email to a newsletter list? (Double opt-in?)
 - Is there a way to request data deletion?

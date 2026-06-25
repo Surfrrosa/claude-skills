@@ -15,7 +15,7 @@ The user may specify:
 
 Parse the argument string. Examples:
 - `/session` -- log for current project
-- `/session synestrology` -- log for synestrology
+- `/session myapp` -- log for myapp
 
 ## Project Aliases
 
