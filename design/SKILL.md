@@ -10,11 +10,10 @@ Evaluates whether the project's design system serves users — not whether pages
 This skill outputs **recommendations**, not bugs. Each finding cites the source-of-truth document, the brand voice it should serve, and the typography/perception research it draws on. The user makes the final call on every recommendation.
 
 This skill is different from:
-- `/cohesion` — does each page match the canonical system? (target validation)
 - `/a11y` — does the page meet WCAG? (accessibility floor)
-- `/zombie` — is there dead/duplicate code? (cleanup)
-- `/walkthrough` — are there missing-feature gaps? (UX coverage)
-- `/voice` — does this content match brand voice? (writing register)
+- Cohesion / design-system enforcement skills — do pages match the canonical system? (target validation)
+- Dead-code / duplication audits — is there cruft to clean up?
+- UX coverage audits — are there missing-feature gaps?
 
 ## Arguments
 
@@ -285,7 +284,7 @@ If `--write <path>` flag passed, write the report to that path AND print it in c
 
 ## Rules
 
-- **Recommendations, not bugs.** Use this skill to evaluate the system's appropriateness, not enforce conformity. Bug-finding is /cohesion's job.
+- **Recommendations, not bugs.** Use this skill to evaluate the system's appropriateness, not enforce conformity. Bug-finding belongs to cohesion / design-system enforcement skills.
 - **Cite the brand intent.** Every recommendation should reference what the brand stated about itself; this is not generic typography advice, it's "here's how the implementation matches what YOU said you wanted."
 - **Surface-by-surface.** Don't pretend marketing-page typography logic applies to chat. Different surfaces have different demands; the audit must respect that.
 - **User has final call.** This is brand judgment, not a math problem. Surface decisions; let the user lock them.
@@ -295,7 +294,7 @@ If `--write <path>` flag passed, write the report to that path AND print it in c
 ## What this skill explicitly does NOT do
 
 - **Doesn't run accessibility checks** — that's `/a11y`.
-- **Doesn't enforce consistency** — that's `/cohesion`.
+- **Doesn't enforce consistency** — that's the job of a cohesion / design-system audit.
 - **Doesn't redesign anything** — produces recommendations the user reviews.
 - **Doesn't second-guess voice docs** — assumes the voice docs are correct; audits visual register against THAT.
 - **Doesn't do live A/B testing setup** — flags candidates, points at testing tools if relevant.
