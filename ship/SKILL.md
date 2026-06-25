@@ -7,6 +7,35 @@ description: Pre-deploy safety checklist — catches the stuff you miss at 2am
 
 Run a go/no-go checklist before deploying. Catches build failures, leaked secrets, debug artifacts, missing env vars, broken tests, and other landmines that slip through when you're shipping fast and solo.
 
+## Sample output
+
+A successful run produces something like:
+
+```
+## Ship Check — marketing-site
+Deploy target: Vercel
+Branch: main (clean, up to date with origin)
+
+✓ Git state — clean working tree
+✓ Build — npm run build passed (12.4s)
+✓ Tests — 47 passed, 0 failed
+✓ Type check — clean
+✗ Secrets — found "sk_live_" in src/lib/stripe.ts:14 (should use env var)
+✗ Env vars — NEXT_PUBLIC_GA_ID set locally but not in Vercel dashboard
+⚠ Debug — 2 console.log calls in src/app/checkout/page.tsx
+⚠ TODO — 1 unresolved TODO in src/checkout.ts:28 (added in this branch)
+
+### Blockers (do not deploy)
+1. Hardcoded Stripe secret key — move to env var STRIPE_SECRET_KEY
+2. Missing NEXT_PUBLIC_GA_ID in Vercel — analytics will silently fail in prod
+
+### Warnings (deploy with awareness)
+1. console.log statements left in src/app/checkout/page.tsx
+2. Unresolved TODO in this branch's diff
+
+Verdict: NO-GO. Fix blockers, re-run /ship.
+```
+
 ## Arguments
 
 The user may specify:

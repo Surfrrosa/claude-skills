@@ -7,6 +7,30 @@ description: Audit accessibility (WCAG) compliance in source code and optionally
 
 Scan a project's source code for WCAG 2.1 accessibility violations. Optionally check live URLs for rendered accessibility issues. Can auto-fix safe categories.
 
+## Sample output
+
+A successful run produces something like:
+
+```
+## Accessibility Audit — marketing-site
+Score: 76/100 (C)
+Stack: Next.js 16
+
+### CRITICAL (blocks entire user groups)
+1. Keyboard accessibility — src/components/NavMenu.tsx:42 — onClick handler on <div> with no tabIndex or onKeyDown. Keyboard users can't open the menu. Fix: change to <button>.
+
+### SERIOUS
+1. Forms — src/app/contact/page.tsx:18 — <input name="email"> has placeholder but no <label>. Fix: wrap in <label> or add aria-label.
+2. Images — src/components/Hero.tsx:24 — <img src="/hero.jpg"> missing alt attribute.
+
+### MODERATE
+1. Heading hierarchy — src/app/about/page.tsx — page jumps from h1 to h3, skipping h2.
+
+### Summary
+- 1 critical, 2 serious, 1 moderate
+- Top priority: NavMenu keyboard accessibility (blocks every keyboard user)
+```
+
 ## Arguments
 
 The user may specify:

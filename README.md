@@ -4,7 +4,20 @@ A free audit toolkit for [Claude Code](https://claude.com/claude-code). Fourteen
 
 ## What's a skill?
 
-A skill is a reusable slash command for Claude Code. It's a markdown file that lives in `~/.claude/skills/<name>/SKILL.md`. When you type `/<name>` in Claude Code, the skill runs.
+A skill is a reusable slash command for Claude Code. It's a markdown file that lives in `~/.claude/skills/<name>/SKILL.md`. When you type `/<name>` in Claude Code, the skill runs the playbook in that file.
+
+No code, no plugins, no SDK. If you can write a checklist, you can write a skill.
+
+## Start here
+
+**First time using skills?** Try this order:
+
+1. Install `/onboard` (instructions below)
+2. Run `cd <your-project> && claude` to start Claude Code in your project
+3. Type `/onboard` — Claude will read your codebase and brief you on it
+4. Then install `/a11y` and run it on the same project — your first audit
+
+If you like what you see, install the rest with the "all of them" command below.
 
 ## Install
 
@@ -18,15 +31,17 @@ mkdir -p ~/.claude/skills/a11y && \
 
 Swap `a11y` for any skill name in this repo.
 
-### All of them
+### All of them (without overwriting existing skills)
 
 ```bash
 git clone https://github.com/Surfrrosa/claude-skills.git ~/claude-skills-tmp && \
-  cp -r ~/claude-skills-tmp/*/ ~/.claude/skills/ && \
+  cp -rn ~/claude-skills-tmp/*/ ~/.claude/skills/ && \
   rm -rf ~/claude-skills-tmp
 ```
 
-Then restart Claude Code (or run `/help`) so it picks up the new skills.
+The `-n` flag tells `cp` to skip any skill folders you already have. If you'd like to replace an existing skill with the version from this repo, delete that folder first.
+
+After install, restart Claude Code (or run `/help`) so it picks up the new skills.
 
 ## What's included
 
@@ -59,18 +74,33 @@ Then restart Claude Code (or run `/help`) so it picks up the new skills.
 | `/ship` | Pre-deploy safety checklist. Catches build failures, leaked secrets, debug artifacts, missing env vars. |
 | `/session` | End-of-session log generator. What changed, decisions made, next steps. |
 
-## A note on customization
+## Which skills apply to your stack?
 
-Each skill resolves projects from a small registry table at the top of the file. The placeholder is `myapp`; add your own projects as you go. Each skill also references conventions specific to certain stacks (Next.js, Astro, Flask/Jinja, static HTML, React Native). They handle the common stacks gracefully but you may want to tweak the detection patterns or the auto-fix rules for your setup.
+| Skill | Web (Next.js / Astro / Flask) | Python backend / Node API | React Native / Expo |
+|-------|-------------------------------|---------------------------|---------------------|
+| `/a11y`, `/walkthrough` | ✓ | skip | ✓ |
+| `/perf`, `/seo` | ✓ | partial | skip |
+| `/privacy`, `/drift`, `/coupling`, `/onboard`, `/ship`, `/session` | ✓ | ✓ | ✓ |
+| `/cohesion`, `/thatsweird`, `/design` | ✓ | skip | skip |
 
-### Sub-skill dependencies for `/full-sweep`
+If a skill doesn't apply to your stack, it will self-detect and skip with a clear message — you don't have to memorize this.
+
+## Customization
+
+Each skill resolves projects from a small registry table at the top of the file. The placeholder is `myapp`; add your own projects as you go.
+
+For the audit-class skills (`/drift`, `/cohesion`, `/coupling`), there's a small one-time setup: you tell the skill what your project's canonical sources are (config module, design system file, etc.). The skill uses that as ground truth.
+
+See [CUSTOMIZATION.md](./CUSTOMIZATION.md) for a walkthrough.
+
+## Sub-skill dependencies for `/full-sweep`
 
 `/full-sweep` is an orchestrator. It expects sub-audits to be installed in `~/.claude/skills/`. This repo includes most of them; a few (`/zombie`, `/security-review`, `/vuln`, `/sentry`) you'll need to source separately or substitute equivalents.
 
 ## License
 
-MIT. Use them, fork them, share them.
+MIT. Use them, fork them, share them. See [LICENSE](./LICENSE).
 
-## Issues
+## Issues + contributing
 
-Something off? Open an issue.
+Something off? Open an issue. Improvements welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md).

@@ -7,6 +7,35 @@ description: Audit performance — bundle size, image weight, render-blocking re
 
 Analyze a project for performance problems that kill load times and conversions. Two modes: source analysis (what you can catch from code) and live analysis (what Google PageSpeed Insights sees).
 
+## Sample output
+
+A successful run produces something like:
+
+```
+## Performance Audit — marketing-site
+Stack: Next.js 16
+
+### Images (3.4MB total)
+- public/hero.png — 1.8MB PNG, should be WebP (~250KB)
+- public/team-photo.jpg — 920KB, unresponsive (no srcset)
+- 6 images below the fold loading eagerly (missing loading="lazy")
+
+### JavaScript (480KB bundled)
+- src/components/Analytics.tsx — loads PostHog synchronously in <head>; should be async or deferred
+- 3 client components could be server components (no hooks, no event handlers)
+
+### Fonts
+- Google Fonts <link> missing &display=swap — invisible text during font load
+
+### Caching & Compression
+- public/_headers missing — no long cache on static assets
+
+### Summary
+- Critical: 2 (hero image weight, synchronous analytics)
+- Warning: 3
+- Top priority: convert hero.png to WebP (saves ~1.5MB on first load)
+```
+
 ## Arguments
 
 The user may specify:

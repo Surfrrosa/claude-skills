@@ -7,6 +7,39 @@ description: Digest a repository and become an expert before starting work
 
 Rapidly digest a repository's architecture, documentation, conventions, and current state so we hit the ground running with zero duplication of work.
 
+## Sample output
+
+A successful run produces something like:
+
+```
+## Project: marketing-site
+Stack: Next.js 16 (App Router), TypeScript, Tailwind CSS, Framer Motion, Vercel
+Purpose: Marketing site for a SaaS product, with blog and contact form
+Current state: clean working tree, last commit added /pricing page
+
+### Key files
+- src/app/layout.tsx — root layout, fonts, metadata
+- src/app/page.tsx — homepage with hero + features
+- src/app/pricing/page.tsx — recently added, has TODO for annual toggle
+- src/lib/posts.ts — blog post loading via gray-matter
+
+### Conventions (from CLAUDE.md)
+- Tailwind-first styling; only add custom CSS for what Tailwind can't do
+- No em dashes; use commas / periods / colons
+- All components TypeScript (.tsx); utilities (.ts)
+
+### Next tasks (from latest session log, 2026-06-20)
+1. Wire up the annual/monthly toggle on /pricing
+2. Add OG image generation for blog posts
+3. Audit accessibility before launch
+
+### Known issues
+- /contact form still uses mailto: — needs Resend or similar for production
+- No 404 page styling
+
+Ready to work.
+```
+
 ## Arguments
 
 The user will specify a project by name or path. Known project aliases:
