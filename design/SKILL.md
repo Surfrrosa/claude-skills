@@ -63,20 +63,20 @@ The four-layer minimum every project should have:
 | **3. Documentation** | When-to-use rules, decision frameworks, anti-patterns | `docs/DESIGN_SYSTEM.md`, `docs/BRAND_VOICE.md`, design contracts |
 | **4. Drift enforcement** | Automated checks that fail CI when a page reinvents the wheel | `tests/test_template_cohesion.py` (or equivalent), pre-commit hooks, project-level Claude Code hooks |
 
-For each layer, mark ✅ / 🟡 (partial) / 🔴 (missing). If any layer is 🔴, the design audit's recommendations cannot stick — **fixing the missing layer is the immediate next task**, before any per-surface psychology evaluation.
+For each layer, mark OK / Partial / Missing. If any layer is Missing, the design audit's recommendations cannot stick — **fixing the missing layer is the immediate next task**, before any per-surface psychology evaluation.
 
-If two or more layers are 🔴, the audit STOPS here and reports: "no design system to evaluate against — bootstrap one before continuing." This is a strict gate, not a recommendation.
+If two or more layers are Missing, the audit STOPS here and reports: "no design system to evaluate against — bootstrap one before continuing." This is a strict gate, not a recommendation.
 
-If everything is ✅ or 🟡, proceed to Step 1.
+If everything is OK or Partial, proceed to Step 1.
 
 **Output of this step** (always include in the report):
 
 ```
 ### Design system integrity
-1. Tokens: [✅ / 🟡 / 🔴] — [evidence + gaps]
-2. Components: [✅ / 🟡 / 🔴] — [evidence + gaps]
-3. Documentation: [✅ / 🟡 / 🔴] — [evidence + gaps]
-4. Enforcement: [✅ / 🟡 / 🔴] — [evidence + gaps]
+1. Tokens: [OK / Partial / Missing] — [evidence + gaps]
+2. Components: [OK / Partial / Missing] — [evidence + gaps]
+3. Documentation: [OK / Partial / Missing] — [evidence + gaps]
+4. Enforcement: [OK / Partial / Missing] — [evidence + gaps]
 ```
 
 Reasoning: a design audit asking "is this typography choice serving the user?" is meaningless if the typography choice is just one of 12 inconsistent variations across the codebase. Establish the source of truth first.
@@ -218,9 +218,9 @@ This is squishy but real. Smells:
 
 For each surface, render a verdict:
 
-- **✅ SERVES** — the design choice for this surface matches the intent + the user's psychological needs. Keep.
-- **⚠️ DRIFT** — the design choice for this surface partially serves but has gaps. Specific recommended adjustments.
-- **🔄 CONSIDER TESTING** — the design might serve, but it's worth A/B testing or trying an alternative.
+- **SERVES** — the design choice for this surface matches the intent + the user's psychological needs. Keep.
+- **DRIFT** — the design choice for this surface partially serves but has gaps. Specific recommended adjustments.
+- **CONSIDER TESTING** — the design might serve, but it's worth A/B testing or trying an alternative.
 
 ### Step 4 — Recommendations + decisions to surface
 
@@ -242,7 +242,7 @@ Compose a designed-with-intent report:
 ### Per-surface verdicts
 
 #### Marketing landing
-**Verdict:** [✅ / ⚠️ / 🔄]
+**Verdict:** [SERVES / DRIFT / CONSIDER TESTING]
 **Findings:** ...
 **Recommendations:** ...
 **Decisions for user:** ...

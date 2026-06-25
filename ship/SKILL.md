@@ -16,14 +16,14 @@ A successful run produces something like:
 Deploy target: Vercel
 Branch: main (clean, up to date with origin)
 
-✓ Git state — clean working tree
-✓ Build — npm run build passed (12.4s)
-✓ Tests — 47 passed, 0 failed
-✓ Type check — clean
-✗ Secrets — found "sk_live_" in src/lib/stripe.ts:14 (should use env var)
-✗ Env vars — NEXT_PUBLIC_GA_ID set locally but not in Vercel dashboard
-⚠ Debug — 2 console.log calls in src/app/checkout/page.tsx
-⚠ TODO — 1 unresolved TODO in src/checkout.ts:28 (added in this branch)
+PASS Git state — clean working tree
+PASS Build — npm run build passed (12.4s)
+PASS Tests — 47 passed, 0 failed
+PASS Type check — clean
+FAIL Secrets — found "sk_live_" in src/lib/stripe.ts:14 (should use env var)
+FAIL Env vars — NEXT_PUBLIC_GA_ID set locally but not in Vercel dashboard
+WARN Debug — 2 console.log calls in src/app/checkout/page.tsx
+WARN TODO — 1 unresolved TODO in src/checkout.ts:28 (added in this branch)
 
 ### Blockers (do not deploy)
 1. Hardcoded Stripe secret key — move to env var STRIPE_SECRET_KEY

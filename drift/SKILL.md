@@ -77,7 +77,7 @@ Launch 2–3 agents in parallel. Each takes a slice of the 8 categories below. G
 
 **Allowlist:** Test fixtures, computed-ground-truth snapshots tagged as such with a comment.
 
-**Hook candidate?** ✅ Yes — pattern-detectable per project.
+**Hook candidate?** Yes — pattern-detectable per project.
 
 #### Category 2: Year-bound module constants
 
@@ -87,7 +87,7 @@ Launch 2–3 agents in parallel. Each takes a slice of the 8 categories below. G
 
 **Canonical replacement:** Compute at runtime. If the data isn't computable, use a year-agnostic name + a generation script that runs on demand.
 
-**Hook candidate?** ✅ Yes — universal pattern across projects.
+**Hook candidate?** Yes — universal pattern across projects.
 
 #### Category 3: Hardcoded model IDs / API client config
 
@@ -99,7 +99,7 @@ Launch 2–3 agents in parallel. Each takes a slice of the 8 categories below. G
 
 **Allowlist:** The config module itself (it IS the source), inline `# audit-ok: model-id-explicit` comments for intentional version freezes.
 
-**Hook candidate?** ✅ Yes — substring detection of known SDK model names is mechanical.
+**Hook candidate?** Yes — substring detection of known SDK model names is mechanical.
 
 #### Category 4: Email addresses / URLs / domain literals
 
@@ -111,7 +111,7 @@ Launch 2–3 agents in parallel. Each takes a slice of the 8 categories below. G
 
 **Allowlist:** The config module itself; static HTML meta tags that legitimately need the production URL (og:url, canonical) — flag but don't fail.
 
-**Hook candidate?** ✅ Yes — domain literal regex check.
+**Hook candidate?** Yes — domain literal regex check.
 
 #### Category 5: Hardcoded prices / costs / tier limits / magic numbers
 
@@ -123,7 +123,7 @@ Launch 2–3 agents in parallel. Each takes a slice of the 8 categories below. G
 
 **Allowlist:** Local loop bounds, math constants (pi), test fixtures.
 
-**Hook candidate?** ⚠️ Partial — can detect prices via `price_xxx` / `$XX` regex, but business-logic magic numbers need LLM judgment. The skill flags these; the user decides which deserve extraction.
+**Hook candidate?** Partial — can detect prices via `price_xxx` / `$XX` regex, but business-logic magic numbers need LLM judgment. The skill flags these; the user decides which deserve extraction.
 
 #### Category 6: Hand-typed lists duplicating canonical enums
 
@@ -135,7 +135,7 @@ Launch 2–3 agents in parallel. Each takes a slice of the 8 categories below. G
 
 **Allowlist:** The canonical source file itself.
 
-**Hook candidate?** ⚠️ Partial — can detect via "this exact list appears more than once in src/" check, but distinguishing intentional fixtures from drift needs context.
+**Hook candidate?** Partial — can detect via "this exact list appears more than once in src/" check, but distinguishing intentional fixtures from drift needs context.
 
 #### Category 7: Embedded prompt / template copy that drifts from brand voice
 
@@ -147,7 +147,7 @@ Launch 2–3 agents in parallel. Each takes a slice of the 8 categories below. G
 
 **Allowlist:** Comments + docstrings (style debt, not customer-visible). Rule definitions that SHOW the banned char as an example (e.g., `"Don't use em dashes (—)"` is fine).
 
-**Hook candidate?** ⚠️ Partial — em-dash regex inside triple-quoted strings is doable; banned-phrase detection in source-code strings is reachable.
+**Hook candidate?** Partial — em-dash regex inside triple-quoted strings is doable; banned-phrase detection in source-code strings is reachable.
 
 #### Category 8: Duplicated type → label mappings
 
@@ -159,7 +159,7 @@ Launch 2–3 agents in parallel. Each takes a slice of the 8 categories below. G
 
 **Allowlist:** Tests that intentionally test the mapping shape.
 
-**Hook candidate?** ✅ Yes — round-trip test pattern. **Extend to every enum** that has display labels.
+**Hook candidate?** Yes — round-trip test pattern. **Extend to every enum** that has display labels.
 
 ### Step 3 — Consolidate findings + triage
 

@@ -318,12 +318,12 @@ Build a comparison matrix:
 
 | Page | nav | footer | bg | base.css | extra stylesheets |
 |---|---|---|---|---|---|
-| `/` | ✓ | ✓ | ✓ | ✓ | (none) |
-| `/blog` | ✓ | ✓ | ✓ | ✓ | (none) |
-| `/checkout` | ✓ | ✗ (custom) | ✓ | ✓ | own.css |
+| `/` | yes | PASS | yes | PASS | (none) |
+| `/blog` | yes | PASS | yes | PASS | (none) |
+| `/checkout` | yes | no (custom) | yes | PASS | own.css |
 | ... | | | | | |
 
-Pages with any ✗ are RED. Inconsistencies across the matrix are the visible drift.
+Pages with any "no" are RED. Inconsistencies across the matrix are the visible drift.
 
 ### Step 6 — Ranking
 
@@ -332,20 +332,20 @@ Compose findings into a single prioritized report:
 ```
 ## Cohesion Audit — [project]
 
-### 🔴 RED — Page-shape violations
+### RED RED — Page-shape violations
 1. **[file]** — extends base but overrides the content block with full custom layout including its own nav and footer. Drift visible to users.
 2. **[file]** — does not extend any base; renders with bespoke `<head>`/`<body>`. Carries its own @font-face block + footer.
 
-### 🟡 YELLOW — Component drift
+### YELLOW YELLOW — Component drift
 1. `.checkout-btn` recreates `.btn-primary` (used in [N] places). Migrate or alias.
 2. `.sample-report-link` recreates `.btn-text`. Migrate.
 3. [N] inline `style="color: #B87333"` should be `var(--accent)`.
 
-### 🟡 YELLOW — Token discipline
+### YELLOW YELLOW — Token discipline
 1. [N] hex colors outside canonical stylesheet ([list top 5 with file:line]).
 2. [N] `font-family:` declarations outside canonical stylesheet.
 
-### 🟠 SMELL — Inline `<style>` block size
+### ORANGE SMELL — Inline `<style>` block size
 1. `tools/blueprint.html` — [N] lines of inline CSS (largest)
 2. `tools/time-travel.html` — [N] lines
 3. `pages/index.html` — [N] lines (may be acceptable; landing pages tend to have hero-specific styling)

@@ -123,13 +123,13 @@ Document these in the report so the user knows we considered them and chose not 
 ### Phase 2: Detect each edge case
 
 For each of the 5 fixes above, run its detection step. Record:
-- ✅ Already correct (no fix needed)
-- ⚠️ Missing / broken (fix needed)
-- ➖ N/A for this site (e.g., reduced-motion fix on a site with no animations)
+- Yes Already correct (no fix needed)
+- Partial Missing / broken (fix needed)
+- N/A N/A for this site (e.g., reduced-motion fix on a site with no animations)
 
 ### Phase 3: Apply fixes
 
-Apply fixes for everything in the ⚠️ list. Each fix:
+Apply fixes for everything in the Partial list. Each fix:
 - Touches the smallest possible surface (one line in a template, one block in a CSS file).
 - Uses the project's existing conventions (Jinja2 inheritance, CSS variable names, file organization).
 - Is idempotent — re-running the skill should detect "already fixed" and do nothing.
@@ -146,8 +146,8 @@ Output a clear summary:
 **Files touched:** <list>
 
 ### Applied fixes
-- ✅ Chrome auto-dark inversion (added color-scheme dark)
-- ✅ iOS rubber-band flash (added html background)
+- Yes Chrome auto-dark inversion (added color-scheme dark)
+- Yes iOS rubber-band flash (added html background)
 
 ### Already correct
 - theme-color meta tag

@@ -27,14 +27,14 @@ This skill is an orchestrator. It expects the sub-audit skills to be installed i
 
 | Audit | Status in this repo |
 |-------|---------------------|
-| `/a11y` | ✓ included |
-| `/perf` | ✓ included |
-| `/privacy` | ✓ included |
-| `/thatsweird` | ✓ included |
-| `/drift` | ✓ included |
-| `/cohesion` | ✓ included |
-| `/walkthrough` | ✓ included |
-| `/coupling` | ✓ included |
+| `/a11y` | included |
+| `/perf` | included |
+| `/privacy` | included |
+| `/thatsweird` | included |
+| `/drift` | included |
+| `/cohesion` | included |
+| `/walkthrough` | included |
+| `/coupling` | included |
 | `/zombie` | not in this repo — bring your own |
 | `/security-review` | not in this repo — bring your own (Anthropic provides one) |
 | `/vuln` | not in this repo — bring your own |
@@ -99,19 +99,19 @@ Persist `project_type` for use in Phase 2's applicability gating.
 
 | Sub-skill | react-native | web-next / web-spa / python-web | python-backend / node-backend / generic |
 |-----------|--------------|----------------------------------|------------------------------------------|
-| /vuln | ✓ | ✓ | ✓ |
-| /security-review | ✓ | ✓ | ✓ |
-| /privacy | ✓ | ✓ | ✓ |
-| /zombie | ✓ | ✓ | ✓ |
-| /drift | ✓ | ✓ | ✓ |
-| /perf | ✓ | ✓ | ✓ |
-| /sentry | ✓ | ✓ | ✓ |
-| /a11y | ✓ | ✓ | skip |
-| /walkthrough | ✓ | ✓ | skip |
-| /cohesion | **skip** | ✓ | skip |
-| /thatsweird | **skip** | ✓ | skip |
+| /vuln | yes | PASS | yes |
+| /security-review | yes | PASS | yes |
+| /privacy | yes | PASS | yes |
+| /zombie | yes | PASS | yes |
+| /drift | yes | PASS | yes |
+| /perf | yes | PASS | yes |
+| /sentry | yes | PASS | yes |
+| /a11y | yes | PASS | skip |
+| /walkthrough | yes | PASS | skip |
+| /cohesion | **skip** | yes | skip |
+| /thatsweird | **skip** | yes | skip |
 
-Cell legend: `✓` = run normally; `skip` = log "Skipped /{skill} — not applicable to {project_type}" and continue. `generic` is conservative — when type is unknown, skip everything that requires a UI surface.
+Cell legend: `PASS` = run normally; `skip` = log "Skipped /{skill} — not applicable to {project_type}" and continue. `generic` is conservative — when type is unknown, skip everything that requires a UI surface.
 
 ### Phase 1: Audit sequence (read-only — no Plan Mode yet)
 
@@ -238,9 +238,9 @@ After all audits return, build the master plan:
    # Full Sweep — <project> — <date>
 
    ## Pre-flight
-   - Working tree clean ✓
-   - On main, up to date with origin ✓
-   - prebuild-check passing ✓
+   - Working tree clean PASS
+   - On main, up to date with origin PASS
+   - prebuild-check passing PASS
 
    ## Audit summary
 

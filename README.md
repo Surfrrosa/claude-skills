@@ -78,10 +78,10 @@ After install, restart Claude Code (or run `/help`) so it picks up the new skill
 
 | Skill | Web (Next.js / Astro / Flask) | Python backend / Node API | React Native / Expo |
 |-------|-------------------------------|---------------------------|---------------------|
-| `/a11y`, `/walkthrough` | ✓ | skip | ✓ |
-| `/perf`, `/seo` | ✓ | partial | skip |
-| `/privacy`, `/drift`, `/coupling`, `/onboard`, `/ship`, `/session` | ✓ | ✓ | ✓ |
-| `/cohesion`, `/thatsweird`, `/design` | ✓ | skip | skip |
+| `/a11y`, `/walkthrough` | yes | skip | yes |
+| `/perf`, `/seo` | yes | partial | skip |
+| `/privacy`, `/drift`, `/coupling`, `/onboard`, `/ship`, `/session` | yes | yes | yes |
+| `/cohesion`, `/thatsweird`, `/design` | yes | skip | skip |
 
 If a skill doesn't apply to your stack, it will self-detect and skip with a clear message — you don't have to memorize this.
 
