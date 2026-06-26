@@ -97,6 +97,18 @@ See [CUSTOMIZATION.md](./CUSTOMIZATION.md) for a walkthrough.
 
 `/full-sweep` is an orchestrator. It expects sub-audits to be installed in `~/.claude/skills/`. This repo includes most of them; a few (`/zombie`, `/security-review`, `/vuln`, `/sentry`) you'll need to source separately or substitute equivalents.
 
+## Used it on a real project?
+
+We'd love to hear what you found. Open a [field report](https://github.com/Surfrrosa/claude-skills/discussions) — anonymous or named, your call. Even a one-line "ran /a11y on X, found 7 issues, 1 was a false positive" helps tune the skills and helps other users calibrate expectations.
+
+What's useful in a field report:
+- Which skill(s) you ran
+- Stack / project size (rough)
+- How many findings, and how many were false positives
+- One surprise (something it caught that you didn't expect, OR something it missed)
+
+You don't have to name the project. Anonymized reports are just as valuable.
+
 ## License
 
 MIT. Use them, fork them, share them. See [LICENSE](./LICENSE).
