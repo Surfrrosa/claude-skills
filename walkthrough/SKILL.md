@@ -257,13 +257,13 @@ These need design judgment, architectural decisions, or substantive refactoring.
    - Apply each fix. Each fix should be a small, reviewable hunk.
    - Run the project's test suite. If tests fail, abort and report the failure — do NOT commit a broken fix.
    - Commit with `walkthrough: <one-line summary of the fix categories>`.
-   - Push the branch.
-   - Open a PR titled `walkthrough: fix <category 1>, <category 2>, ...`. PR body must list:
+   - Stop. Report the branch name and the diff summary, and ask whether to push and open a PR. Do not push until the user says yes.
+   - On a yes: push the branch and open a PR titled `walkthrough: fix <category 1>, <category 2>, ...`. PR body must list:
      - Each finding fixed (1 bullet each, with file:line and the fix applied)
      - Each finding deferred to follow-up (with a one-line description)
      - A test plan for human review.
-3. **For deferred (`auto_fix: false`) findings:** document them in a follow-up file inside the repo (e.g., `docs/walkthrough-findings-YYYY-MM-DD.md`) or file them in your team's issue tracker. If 3+ deferred findings, create a single umbrella note plus sub-findings; otherwise list individually.
-4. **Output to caller:** the PR URL + a link to the follow-up document, NOT a full re-print of the report (that already happened in Step 4).
+3. **For deferred (`auto_fix: false`) findings:** document them in a follow-up file inside the repo (e.g., `docs/walkthrough-findings-YYYY-MM-DD.md`). File them in an issue tracker only after the user approves the list. If 3+ deferred findings, create a single umbrella note plus sub-findings; otherwise list individually.
+4. **Output to caller:** the branch name (or PR URL, if pushed) + a link to the follow-up document, NOT a full re-print of the report (that already happened in Step 4).
 5. **Skip Step 6 entirely** if `--report-only` was passed.
 
 #### When to abort Step 6 mid-flight
@@ -275,7 +275,7 @@ These need design judgment, architectural decisions, or substantive refactoring.
 
 ## Important rules
 
-- **This skill fixes the easy stuff and files the rest.** Default behavior is to ship a small PR for auto-fixable findings (Step 6) AND document the rest as follow-ups. Pass `--report-only` to disable the PR step. The skill's value is closing the loop between "found a bug" and "patch is reviewable."
+- **This skill fixes the easy stuff and files the rest.** Default behavior is to commit auto-fixable findings on a branch (Step 6), document the rest as follow-ups, and ask before pushing. Pass `--report-only` to disable the commit step. The skill's value is closing the loop between "found a bug" and "patch is reviewable."
 - **Don't propose fixes that drift from project conventions.** Flag the gap; defer to the user / a follow-up issue for the implementation choice. Different products have different right answers (a logout link in the nav vs. a settings panel vs. a chat-header dropdown).
 - **Be honest about what static analysis can and can't see.** This skill is fundamentally code-reading + checklist matching. It will not catch issues that depend on actual visual rendering, real network conditions, or third-party service quirks. For those, recommend visual regression tools (Percy / Chromatic) or an actual E2E pass.
 - **Don't reinvent dead-code audits.** If you're flagging unused code, dead branches, or duplication for its own sake, that's the wrong skill. This skill's job is the missing-feature / unwalked-state class of bug.
@@ -286,9 +286,9 @@ These need design judgment, architectural decisions, or substantive refactoring.
 ## What this skill is NOT
 
 - Not a browser automation tool. We don't load pages, take screenshots, or simulate clicks. That's a different category (Playwright, Cypress, Percy).
-- Not a substitute for actual smoke testing on a deployed environment. The auto-fix bundle (Step 6) ships verified changes, but production smoke-checks against a real browser are still the human's call.
+- Not a substitute for actual smoke testing on a deployed environment. The auto-fix bundle (Step 6) prepares verified changes, but production smoke-checks against a real browser are still the human's call.
 - Not a replacement for accessibility, performance, or SEO audits. Those are orthogonal: code-shape, accessibility, performance, search-engine. This skill is UX-coverage.
-- Not an auto-merger. Step 6 opens a PR for human review; it does not merge.
+- Not an auto-merger. Step 6 commits on a branch and asks before pushing; it never merges.
 
 ## Skill Run Logging
 

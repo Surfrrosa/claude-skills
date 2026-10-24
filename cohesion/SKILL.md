@@ -381,7 +381,7 @@ When `--fix` is set, bundle the auto-fixable findings into a single PR.
 - Removing custom layouts (usually represents real design judgment that needs review)
 - Page-CSS that overrides a global selector if the override is non-trivial (e.g., adds keyframes, redefines a media query block) — flag and file as follow-up, don't touch
 
-**Workflow:** partition findings by `auto_fix`, build branch + commit + push + open PR with the auto-fixable set, file follow-ups for the rest. Cap at 5 fixes per PR; if more, split by category (footer-includes, override-deletions, hex-substitutions, etc.).
+**Workflow:** partition findings by `auto_fix`, commit the auto-fixable set on a new branch, then stop and ask before pushing, opening a PR, or filing follow-ups for the rest. Cap at 5 fixes per PR; if more, split by category (footer-includes, override-deletions, hex-substitutions, etc.).
 
 ## Rules
 
