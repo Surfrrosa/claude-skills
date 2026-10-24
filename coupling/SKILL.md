@@ -153,9 +153,9 @@ After Step 5, partition findings by `auto_fix_eligible`.
 3. Apply each fix as a small reviewable hunk.
 4. Run the project's test suite. If anything fails, abort and report — do NOT commit broken state.
 5. Commit with `coupling: <one-line summary of fix categories>`.
-6. Push the branch.
-7. Open a PR titled `coupling: fix <category 1>, <category 2>, ...`. PR body lists each finding fixed + each follow-up filed for non-auto-fixable findings + a test plan.
-8. Output to caller: PR URL + each follow-up URL.
+6. Stop. Report the branch name, the diff summary, and the follow-ups for non-auto-fixable findings. Do not push, open a PR, or file issues until the user says yes.
+7. On a yes: push the branch and open a PR titled `coupling: fix <category 1>, <category 2>, ...`. PR body lists each finding fixed + each follow-up for non-auto-fixable findings + a test plan. File only the follow-ups the user approved.
+8. Output to caller: the branch name (or PR URL, if pushed) + each follow-up.
 
 **Skip Step 6 entirely** if `--report-only` was passed.
 
@@ -189,7 +189,7 @@ Final output to user:
 - N LOW findings catalogued in umbrella
 
 ### Auto-fix PR
-- <branch> — N fixes applied — <PR URL>
+- <branch> — N fixes applied — <PR URL, if the user approved the push>
 
 ### Signal-to-noise
 - Verification gate dropped N findings as false positives (X% rate)
@@ -232,7 +232,7 @@ Once this skill has run on a project and the false-positive rate is acceptable (
 
 - **Allowlist is load-bearing.** Step 0 must be done thoroughly. Documented intentional couplings flagged as findings is the skill failing, not finding a problem.
 - **Verification gate is mechanical-only.** No "this feels coupled" findings reach output. If the verifier can't re-check mechanically, demote to NEEDS_HUMAN; never silently keep it.
-- **Auto-commit, never auto-push without authorization.** All Step 6 PRs are pushed to remote for review but never merged automatically — merge is explicit authorization.
+- **Commit on a branch, then ask.** Step 6 never pushes, opens a PR, files an issue, or merges on its own. Each one waits for the user's yes.
 - **Don't reinvent a dead-code audit.** Dead imports overlap with dead-code audit territory. Use a dead-code audit's detection if it's already been run on the project recently; otherwise flag the dead imports here and cross-reference.
 - **Don't reinvent a drift audit.** Hardcoded values that should reference canonical sources are a drift audit's domain. This skill's "centralization magnet" finding doesn't include "X hardcodes a config value" — that's a separate audit.
 
